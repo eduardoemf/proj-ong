@@ -9,8 +9,8 @@
 <body>
     <header>
         <img src="../imgs/logo_ong.jpeg" alt="Logotipo da ONG Esperança">
-        <button type="button" class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
-        <nav>
+        <button type="button" class="menu-toggle" aria-label="Abrir menu de navegação" aria-controls="menu-principal" aria-expanded="false">☰</button>
+        <nav id="menu-principal" aria-label="Navegação principal">
             <ul class="nav-list">
                 <li><a href="/" data-link>Início</a></li>
                 <li><a href="/projetos" data-link>Projetos Sociais</a></li>
@@ -19,11 +19,11 @@
         </nav>
     </header>
 
-    <main class="grid-container">
-        <div class="full-width">
+    <main class="grid-container" aria-live="polite">
+        <section class="full-width">
             <h1>Projetos Sociais</h1>
             <p>Conheça nossas frentes de atuação e saiba como contribuir ativamente para a nossa missão.</p>
-        </div>
+        </section>
         
         <section class="full-width">
             <h2>Frentes de Voluntariado</h2>
