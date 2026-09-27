@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONG Esperança | Componentes de Feedback</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <img src="../imgs/logo_ong.jpeg" alt="Logotipo da ONG Esperança">
+        <button type="button" class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/" data-link>Início</a></li>
+                <li><a href="/projetos" data-link>Projetos Sociais</a></li>
+                <li><a href="/cadastro" data-link>Cadastro de Voluntários</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="grid-container">
+        <div class="full-width">
+            <h1>Design System: Feedback Visual</h1>
+            <p>Página exclusiva para validação técnica das micro-interações, modais e alertas do sistema.</p>
+        </div>
+
+        <section class="full-width card feedback-showcase" style="background-color: #f1f5f9;">
+            <!-- Grupo 1: Badges -->
+            <div class="feedback-block">
+                <h3>1. Badges Semânticos</h3>
+                <div class="flex-row" style="margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Projeto Ativo</span>
+                    <span class="badge badge-success">Meta Alcançada</span>
+                    <span class="badge badge-warning">Ação Urgente</span>
+                </div>
+            </div>
+
+            <!-- Grupo 2: Alertas -->
+            <div class="feedback-block" style="margin-top: 1.5rem;">
+                <h3>2. Caixas de Alerta Contextuais</h3>
+                <div style="margin-top: 0.5rem;">
+                    <div class="alert alert-success">
+                        <strong>Sucesso!</strong> Seu cadastro voluntário foi recebido. Em breve nossa equipe fará contato.
+                    </div>
+                    <div class="alert alert-warning">
+                        <strong>Atenção:</strong> Faltam apenas 3 dias para o encerramento da campanha de agasalhos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grupo 3: Toast e Modal -->
+            <div class="feedback-block flex-row align-start" style="margin-top: 1.5rem;">
+                
+                <!-- Toast -->
+                <div class="toast-wrapper">
+                    <h3>3. Toast (Notificação)</h3>
+                    <div class="toast" style="margin-top: 0.5rem;">
+                        <div class="toast-header">
+                            <span>Notificação de Sistema</span>
+                            <button class="btn-close">&times;</button>
+                        </div>
+                        <div class="toast-body">
+                            A chave PIX da organização foi copiada para sua área de transferência.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal-wrapper">
+                    <h3>4. Modal de Confirmação</h3>
+                    <div class="modal-demo" style="margin-top: 0.5rem;">
+                        <div class="modal-content">
+                            <header class="modal-header">
+                                <h4>Confirmar Doação</h4>
+                                <button class="btn-close">&times;</button>
+                            </header>
+                            <div class="modal-body">
+                                <p>Você está prestes a ser redirecionado para o ambiente seguro do banco. Deseja prosseguir com a operação?</p>
+                            </div>
+                            <footer class="modal-footer flex-row right" style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                                <button class="btn btn-outline">Cancelar</button>
+                                <button class="btn btn-primary">Prosseguir</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ONG Esperança. Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>
