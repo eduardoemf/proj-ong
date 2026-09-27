@@ -34,39 +34,45 @@ export function gerarCardsProjetos() {
 
 function gerarFormularioCadastro() {
     return `
-        <div class="full-width">
+        <section class="full-width">
             <h1>Cadastro de Voluntários</h1>
             <p>Preencha os dados abaixo com atenção para se tornar um voluntário.</p>
-        </div>
+        </section>
         <form action="#" method="POST" class="full-width card" data-volunteer-form>
             <fieldset>
                 <legend>Dados Pessoais</legend>
                 <div class="form-group">
                     <label for="nome">Nome completo:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" aria-describedby="erro-nome" required>
+                    <span class="form-error" id="erro-nome"></span>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF (com pontuação):</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" maxlength="14" required title="Formato exigido: 000.000.000-00" inputmode="numeric">
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" maxlength="14" aria-describedby="erro-cpf" required title="Formato exigido: 000.000.000-00" inputmode="numeric">
+                    <span class="form-error" id="erro-cpf"></span>
                 </div>
                 <div class="form-group">
                     <label for="nascimento">Data de Nascimento:</label>
-                    <input type="date" id="nascimento" name="nascimento" required>
+                    <input type="date" id="nascimento" name="nascimento" aria-describedby="erro-nascimento" required>
+                    <span class="form-error" id="erro-nascimento"></span>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Endereço e Comunicação</legend>
                 <div class="form-group">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                    <input type="email" id="email" name="email" placeholder="exemplo@email.com" aria-describedby="erro-email" required>
+                    <span class="form-error" id="erro-email"></span>
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone (com DDD e traço):</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}" maxlength="15" required title="Formato exigido: (99) 99999-9999" inputmode="numeric">
+                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}" maxlength="15" aria-describedby="erro-telefone" required title="Formato exigido: (99) 99999-9999" inputmode="numeric">
+                    <span class="form-error" id="erro-telefone"></span>
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP (com traço):</label>
-                    <input type="text" id="cep" name="cep" placeholder="00000-000" pattern="\\d{5}-\\d{3}" maxlength="9" required title="Formato exigido: 00000-000" inputmode="numeric">
+                    <input type="text" id="cep" name="cep" placeholder="00000-000" pattern="\\d{5}-\\d{3}" maxlength="9" aria-describedby="erro-cep" required title="Formato exigido: 00000-000" inputmode="numeric">
+                    <span class="form-error" id="erro-cep"></span>
                 </div>
             </fieldset>
             <button type="submit" class="btn" disabled>Enviar Cadastro</button>
@@ -80,7 +86,7 @@ function gerarFormularioCadastro() {
 
 export const rotas = {
     '/': '<h1>Início</h1><p>Bem-vindo(a) à ONG Esperança. Atuamos no terceiro setor para promover a inclusão social e garantir direitos básicos a comunidades em vulnerabilidade.</p>',
-    '/projetos': '<div class="full-width"><h1>Projetos Sociais</h1><p>Conheça nossas frentes de atuação e saiba como contribuir ativamente para a nossa missão.</p></div><section class="full-width"><h2>Frentes de Voluntariado</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">' + gerarCardsProjetos() + '</div></section>',
+    '/projetos': '<section class="full-width"><h1>Projetos Sociais</h1><p>Conheça nossas frentes de atuação e saiba como contribuir ativamente para a nossa missão.</p></section><section class="full-width"><h2>Frentes de Voluntariado</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">' + gerarCardsProjetos() + '</div></section>',
     '/cadastro': gerarFormularioCadastro()
 };
 
