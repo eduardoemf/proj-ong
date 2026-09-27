@@ -9,8 +9,8 @@
 <body>
     <header>
         <img src="../imgs/logo_ong.jpeg" alt="Logotipo da ONG Esperança">
-        <button type="button" class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
-        <nav>
+        <button type="button" class="menu-toggle" aria-label="Abrir menu de navegação" aria-controls="menu-principal" aria-expanded="false">☰</button>
+        <nav id="menu-principal" aria-label="Navegação principal">
             <ul class="nav-list">
                 <li><a href="/" data-link>Início</a></li>
                 <li><a href="/projetos" data-link>Projetos Sociais</a></li>
@@ -19,28 +19,31 @@
         </nav>
     </header>
 
-    <main class="grid-container">
-        <div class="full-width">
+    <main class="grid-container" aria-live="polite">
+        <section class="full-width">
             <h1>Cadastro de Voluntários</h1>
             <div class="alert alert-success" role="status" hidden>
                 <strong>Cadastro realizado!</strong> Seus dados foram salvos. Em breve nossa equipe fará contato.
             </div>
-        </div>
+        </section>
         
-        <form action="#" method="POST" class="full-width card">
+        <form action="#" method="POST" class="full-width card" data-volunteer-form>
             <fieldset>
                 <legend>Dados Pessoais</legend>
                 <div class="form-group">
                     <label for="nome">Nome completo:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" aria-describedby="erro-nome" required>
+                    <span class="form-error" id="erro-nome"></span>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF (com pontuação):</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required title="Formato exigido: 000.000.000-00">
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" aria-describedby="erro-cpf" required title="Formato exigido: 000.000.000-00">
+                    <span class="form-error" id="erro-cpf"></span>
                 </div>
                 <div class="form-group">
                     <label for="nascimento">Data de Nascimento:</label>
-                    <input type="date" id="nascimento" name="nascimento" required>
+                    <input type="date" id="nascimento" name="nascimento" aria-describedby="erro-nascimento" required>
+                    <span class="form-error" id="erro-nascimento"></span>
                 </div>
             </fieldset>
 
@@ -48,15 +51,18 @@
                 <legend>Endereço e Comunicação</legend>
                 <div class="form-group">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                    <input type="email" id="email" name="email" placeholder="exemplo@email.com" aria-describedby="erro-email" required>
+                    <span class="form-error" id="erro-email"></span>
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone (com DDD e traço):</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" maxlength="15" required title="Formato exigido: (99) 99999-9999">
+                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" maxlength="15" aria-describedby="erro-telefone" required title="Formato exigido: (99) 99999-9999">
+                    <span class="form-error" id="erro-telefone"></span>
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP (com traço):</label>
-                    <input type="text" id="cep" name="cep" placeholder="00000-000" pattern="\d{5}-\d{3}" maxlength="9" required title="Formato exigido: 00000-000">
+                    <input type="text" id="cep" name="cep" placeholder="00000-000" pattern="\d{5}-\d{3}" maxlength="9" aria-describedby="erro-cep" required title="Formato exigido: 00000-000">
+                    <span class="form-error" id="erro-cep"></span>
                 </div>
             </fieldset>
 

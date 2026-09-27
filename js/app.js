@@ -2,6 +2,7 @@ import { renderizarListaVoluntarios } from './templates.js';
 import { navegarPara, renderizarConteudo } from './router.js';
 import {
     aplicarMascara,
+    atualizarValidacaoCampo,
     atualizarEstadoEnvio,
     obterVoluntarios,
     tratarEnvioFormulario
@@ -28,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const formulario = document.querySelector('[data-volunteer-form]');
             if (formulario) atualizarEstadoEnvio(formulario);
 
-            const listaNavegacao = document.querySelector('nav ul.nav-list');
+            const menu = document.getElementById(
+                document.querySelector('.menu-toggle')?.getAttribute('aria-controls')
+            );
+            const listaNavegacao = menu?.querySelector('ul.nav-list');
             if (listaNavegacao) {
                 listaNavegacao.classList.remove('active');
                 document.querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'false');
@@ -38,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const botaoMenu = evento.target.closest('.menu-toggle');
         if (botaoMenu) {
-            const listaNavegacao = document.querySelector('nav ul.nav-list');
+            const menu = document.getElementById(botaoMenu.getAttribute('aria-controls'));
+            const listaNavegacao = menu?.querySelector('ul.nav-list');
             if (listaNavegacao) {
                 const menuAtivo = listaNavegacao.classList.toggle('active');
                 botaoMenu.setAttribute('aria-expanded', String(menuAtivo));
@@ -54,8 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!formulario) return;
 
         aplicarMascara(campo);
+        atualizarValidacaoCampo(campo);
         atualizarEstadoEnvio(formulario);
     });
+
+    document.body.addEventListener('invalid', evento => {
+        if (evento.target instanceof HTMLInputElement) {
+            atualizarValidacaoCampo(evento.target);
+        }
+    }, true);
 
     document.body.addEventListener('submit', evento => {
         if (tratarEnvioFormulario(evento)) {

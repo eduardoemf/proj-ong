@@ -27,6 +27,18 @@ export function aplicarMascara(campo) {
     if (mascara) campo.value = mascara(campo.value);
 }
 
+export function atualizarValidacaoCampo(campo) {
+    const elementoErro = document.getElementById(campo.getAttribute('aria-describedby'));
+    if (campo.validity.valid) {
+        campo.removeAttribute('aria-invalid');
+        if (elementoErro) elementoErro.textContent = '';
+        return;
+    }
+
+    campo.setAttribute('aria-invalid', 'true');
+    if (elementoErro) elementoErro.textContent = campo.validationMessage;
+}
+
 export function atualizarEstadoEnvio(formulario) {
     const botaoSubmit = formulario.querySelector('button[type="submit"]');
     if (botaoSubmit) botaoSubmit.disabled = !formulario.checkValidity();

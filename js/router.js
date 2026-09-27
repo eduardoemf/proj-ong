@@ -15,7 +15,15 @@ export function renderizarConteudo(caminho) {
     if (!conteudoPrincipal) return;
 
     const rotaAtual = normalizarCaminho(caminho);
-    conteudoPrincipal.innerHTML = rotas[rotaAtual] || '<h1>404 - Página não encontrada</h1>';
+    const titulos = {
+        '/': 'Início',
+        '/projetos': 'Projetos Sociais',
+        '/cadastro': 'Cadastro de Voluntários'
+    };
+    const pagina = rotas[rotaAtual] || '<h1>404 - Página não encontrada</h1>';
+    const titulo = titulos[rotaAtual] || 'Página não encontrada';
+
+    conteudoPrincipal.innerHTML = `<p class="visually-hidden">Página ${titulo} carregada.</p>${pagina}`;
 }
 
 export function navegarPara(caminho) {
