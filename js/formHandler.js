@@ -41,7 +41,8 @@ export function atualizarValidacaoCampo(campo) {
 
 export function atualizarEstadoEnvio(formulario) {
     const botaoSubmit = formulario.querySelector('button[type="submit"]');
-    if (botaoSubmit) botaoSubmit.disabled = !formulario.checkValidity();
+    const campos = Array.from(formulario.querySelectorAll('input, select, textarea'));
+    if (botaoSubmit) botaoSubmit.disabled = !campos.every(campo => campo.validity.valid);
 }
 
 export function obterVoluntarios() {
@@ -58,7 +59,10 @@ export function tratarEnvioFormulario(evento) {
     if (!formulario) return false;
 
     evento.preventDefault();
-    if (!formulario.checkValidity()) return false;
+    if (!formulario.checkValidity()) {
+        formulario.querySelector('input:invalid')?.focus();
+        return false;
+    }
 
     const novoVoluntario = {
         nome: formulario.elements.nome.value,
@@ -83,14 +87,19 @@ export function tratarEnvioFormulario(evento) {
         return false;
     }
 
-    formulario.reset();
-    atualizarEstadoEnvio(formulario);
-    window.Swal?.fire({
+    const limparFormulario = () => {
+        formulario.reset();
+        atualizarEstadoEnvio(formulario);
+        formulario.querySelector('input')?.focus();
+    };
+    const alertaSucesso = window.Swal?.fire({
         title: 'Cadastro Concluído!',
         text: 'Obrigado por se voluntariar. Entraremos em contato em breve.',
         icon: 'success',
         confirmButtonText: 'Fechar',
         confirmButtonColor: '#198754'
     });
+    if (alertaSucesso?.then) alertaSucesso.then(limparFormulario);
+    else limparFormulario();
     return true;
 }

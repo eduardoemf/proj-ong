@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const botaoMenu = evento.target.closest('.menu-toggle');
+        const botaoMenu = evento.target.closest('button.menu-toggle');
         if (botaoMenu) {
             const menu = document.getElementById(botaoMenu.getAttribute('aria-controls'));
             const listaNavegacao = menu?.querySelector('ul.nav-list');
