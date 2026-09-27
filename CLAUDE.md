@@ -26,6 +26,18 @@ Execute `npm run build` após mudanças de código. Para mudanças de interface,
 - Ao alterar uma navegação ou formulário, verifique as páginas HTML estáticas e os templates SPA aplicáveis.
 - Faça mudanças pequenas e relacionadas ao pedido. Não sobrescreva alterações existentes nem faça limpeza ou refatoração não solicitada.
 
+## Segurança de Dependências
+
+- Antes de propor uma biblioteca externa, confirme que ela é necessária e prefira APIs nativas ou dependências já instaladas quando atendem ao caso.
+- Peça aprovação explícita antes de adicionar ou atualizar uma dependência. Informe pacote e versão exata, finalidade, classificação (runtime ou desenvolvimento), alternativas consideradas e riscos relevantes.
+- Confirme o nome exato do pacote e sua procedência no registro oficial npm. Verifique documentação, repositório, mantenedores, histórico de releases, licença e sinais de manutenção suspeita; popularidade, isoladamente, não comprova segurança.
+- Não instale pacotes de registros desconhecidos, URLs Git, tarballs ou fontes arbitrárias sem aprovação e verificação de procedência. Não execute `npx` para baixar ferramentas nem comandos remotos como `curl | sh` sem confirmar a fonte, a versão e o conteúdo.
+- Trate scripts `preinstall`, `install` e `postinstall` como código executável: examine-os antes de aprovar a instalação e considere também dependências transitivas e opcionais.
+- Preserve `package-lock.json` nos commits. Revise qualquer alteração nele; prefira versões exatas com `npm install --save-exact` (e `--save-dev` para ferramentas exclusivas de desenvolvimento). Use `npm ci` para instalações reproduzíveis a partir do lockfile. Nunca apague o lockfile apenas para resolver conflitos.
+- Após adicionar ou atualizar pacotes, execute `npm audit` e `npm run build`; avalie os avisos e mudanças transitivas antes de prosseguir. Não use `npm audit fix --force` nem atualizações em massa sem revisar impacto e compatibilidade. Uma auditoria sem alertas não garante que um pacote seja seguro.
+- Para scripts ou bibliotecas carregados por CDN, prefira bundle gerenciado pelo lockfile; quando CDN for necessária, fixe uma versão exata e use SRI (`integrity`) e `crossorigin` quando suportados.
+- Nunca inclua tokens, chaves, credenciais ou outros segredos no código, em arquivos de configuração versionados ou em logs. Use variáveis de ambiente e mantenha arquivos locais de segredos fora do Git.
+
 ## GitFlow Obrigatório
 
 Todas as modificações futuras devem seguir o GitFlow do repositório:
