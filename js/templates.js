@@ -1,3 +1,7 @@
+import fotoInstitucional400 from '../imgs/foto_institucional-400w.webp';
+import fotoInstitucional800 from '../imgs/foto_institucional-800w.webp';
+import fotoInstitucional1200 from '../imgs/foto_institucional-1200w.webp';
+
 export const projetosDados = [
     {
         tag: 'Projeto Ativo',
@@ -85,7 +89,23 @@ function gerarFormularioCadastro() {
 }
 
 export const rotas = {
-    '/': '<h1>Início</h1><p>Bem-vindo(a) à ONG Esperança. Atuamos no terceiro setor para promover a inclusão social e garantir direitos básicos a comunidades em vulnerabilidade.</p>',
+    '/': `<section class="full-width">
+        <h1>Bem-vindo(a) à ONG Esperança</h1>
+        <p>Atuamos no terceiro setor para promover a inclusão social e garantir direitos básicos a comunidades em vulnerabilidade.</p>
+    </section>
+    <section class="half-width card">
+        <h2>Nossa Missão</h2>
+        <p>Acreditamos na transformação por meio do voluntariado estruturado.</p>
+        <img src="${fotoInstitucional800}" srcset="${fotoInstitucional400} 400w, ${fotoInstitucional800} 800w, ${fotoInstitucional1200} 1200w" sizes="(max-width: 600px) 100vw, 50vw" alt="Grupo de voluntários sorrindo enquanto organizam caixas de doação">
+    </section>
+    <section class="half-width card">
+        <h2>Fale Conosco</h2>
+        <address>
+            <p><strong>E-mail:</strong> <a href="mailto:contato@ongesperanca.org.br">contato@ongesperanca.org.br</a></p>
+            <p><strong>Telefone:</strong> <a href="tel:+5511999999999">(11) 99999-9999</a></p>
+            <p><strong>Endereço:</strong> Rua da Solidariedade, 123, Bairro - Cidade/UF</p>
+        </address>
+    </section>`,
     '/projetos': '<section class="full-width"><h1>Projetos Sociais</h1><p>Conheça nossas frentes de atuação e saiba como contribuir ativamente para a nossa missão.</p></section><section class="full-width"><h2>Frentes de Voluntariado</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">' + gerarCardsProjetos() + '</div></section>',
     '/cadastro': gerarFormularioCadastro()
 };
