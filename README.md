@@ -41,7 +41,7 @@ Os dados de voluntários ficam apenas no `localStorage` do navegador e da origem
 
 ## Versionamento
 
-O desenvolvimento segue **GitFlow**: `main` contém versões estáveis, `develop` integra as mudanças e branches de trabalho são criadas a partir de `develop`. Use prefixos que indiquem o propósito, como `feature/`, `fix/` e `docs/`; após integrar e validar uma branch, remova-a.
+Todas as modificações futuras devem seguir o **GitFlow**: `main` contém versões estáveis, `develop` integra as mudanças e branches de trabalho são criadas a partir de `develop`. Use prefixos que indiquem o propósito, como `feature/`, `fix/` e `docs/`; após integrar e validar uma branch, remova-a.
 
 As mensagens de commit seguem **Conventional Commits**, no formato `<tipo>: <descrição>`. Exemplos:
 
