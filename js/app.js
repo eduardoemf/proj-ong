@@ -8,6 +8,19 @@ import {
     tratarEnvioFormulario
 } from './formHandler.js';
 
+const CHAVE_TEMA = 'tema';
+
+function restaurarTemaSalvo() {
+    try {
+        const temaSalvo = window.localStorage.getItem(CHAVE_TEMA);
+        if (temaSalvo === 'light' || temaSalvo === 'dark') {
+            document.documentElement.setAttribute('data-theme', temaSalvo);
+        }
+    } catch {}
+}
+
+restaurarTemaSalvo();
+
 function renderizarRotaAtual(caminho) {
     renderizarConteudo(caminho);
     renderizarListaVoluntarios(obterVoluntarios());
@@ -48,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const menuAtivo = listaNavegacao.classList.toggle('active');
                 botaoMenu.setAttribute('aria-expanded', String(menuAtivo));
             }
+        }
+
+        const botaoTema = evento.target.closest('#theme-toggle');
+        if (botaoTema) {
+            const elementoRaiz = document.documentElement;
+            const temaAtual = elementoRaiz.getAttribute('data-theme')
+                || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const novoTema = temaAtual === 'dark' ? 'light' : 'dark';
+
+            elementoRaiz.setAttribute('data-theme', novoTema);
+            try {
+                window.localStorage.setItem(CHAVE_TEMA, novoTema);
+            } catch {}
         }
     });
 
